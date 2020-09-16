@@ -1,0 +1,72 @@
+.frame_layout {
+    display: inline-block;
+    width: 100px;
+    height: 90px;
+    border: 1px solid black;
+    margin-top: -4px;
+}
+.frame_top {
+    height: 50%;
+    float: top;
+    border-bottom: 1px solid black;
+    line-height: 45px;
+    box-sizing: border-box;
+    background: #ff0;
+}
+.frame_bottom {
+    height: 50%;
+    float: bottom;
+    line-height: 45px;
+    box-sizing: border-box;
+    background: #0ff;
+}
+
+.frame_top_left {
+    width: 50%;
+    height: 100%;
+    float: left;
+    /*line-height: 45px;*/
+    box-sizing: border-box;
+    text-align: center;
+    background: #ff0;
+    border-right: 1px solid black;
+}
+
+.frame_top_right {
+    width: 50%;
+    float: right;
+    height: 100%;
+    /*line-height: 45px;*/
+    box-sizing: border-box;
+    background: #ff0;
+    /*border: 1px solid black;*/
+}
+
+.frame_top_first {
+    width: 33%;
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+    background: #ff0;
+    border-right: 1px solid black;
+    /*border: 1px solid black;*/
+}
+
+.frame_top_second {
+    width: 33%;
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+    background: #ff0;
+    border-right: 1px solid black;
+    /*border: 1px solid black;*/
+}
+
+.frame_top_third {
+    width: 34%;
+    float: right;
+    height: 100%;
+    box-sizing: border-box;
+    background: #ff0;
+    /*border: 1px solid black;*/
+}

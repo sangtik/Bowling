@@ -1,0 +1,51 @@
+.scr_layout {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: whitesmoke;
+}
+
+.scr_title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #6b492f;
+}
+
+.scr_subtitle{
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    height: 5%;
+    color: #6b492f;
+}
+
+.scr_number{
+    margin-right: 50px;
+}
+
+.scr_contents{
+    /*background: blue;*/
+    height: 600px;
+    /*width: 1500px;*/
+}
+
+.scr_footer{
+    bottom: 100px;
+}
+
+
+.hit_btn {
+    background: rgba(0, 0, 0, 0);
+    color: #c8cd3f;
+    border-color: #f5fff0;
+    border-radius: 5px;
+    margin-right: 1px;
+}
+
+.hit_btn:hover {
+    background: honeydew;
+    border-color:peru;
+    color: peru;
+}

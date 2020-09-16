@@ -1,0 +1,1 @@
+export { FrameLabel } from './FrameLabel';

@@ -1,0 +1,13 @@
+.label{
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-right: 2px;
+    font-weight: bold;
+    text-align: center;
+    width: 100px;
+    line-height: 30px;
+    height: 30px;
+    color: #6b492f;
+    /*background: #4cff00;*/
+}
