@@ -13,10 +13,6 @@ export class GameScreen extends React.Component {
     super(props);
   }
 
-  getPlayerNumber = () => {
-    return playerStore.number;
-  }
-
   all_hit = () => {
     const all_hit:boolean = true;
     scoreStore.hit(all_hit);
@@ -29,7 +25,7 @@ export class GameScreen extends React.Component {
 
   render() {
 
-    const player_num = this.getPlayerNumber();
+    const player_num = playerStore.getPlayerNumber();
     if (player_num < 1 || player_num > 4) return null;
 
     const header = Array(10).fill(null);
