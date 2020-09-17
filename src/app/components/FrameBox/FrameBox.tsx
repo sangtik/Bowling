@@ -4,8 +4,8 @@ import {inject, observer} from "mobx-react";
 import scoreStore from "../../stores/scoreStore";
 
 interface FrameProps {
-  p_index: number,
-  f_index: number;
+    p_index: number,
+    f_index: number;
 }
 
 @inject('scoreStore')

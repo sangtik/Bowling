@@ -255,21 +255,6 @@ export class ScoreStore {
         return total;
     }
 
-    // private prevFrameScoreCheck(): string {
-    //   // PREV FRAME SCORE CHECK ( STRIKE? SPARE? )
-    //   let prev_score:number = this.f_scores[this.p_index][this.f_index - 1];
-    //   let prev_before_score:number = this.f_scores[this.p_index][this.f_index - 2];
-    //
-    //   if(prev_before_score === -1 && prev_score === -1){
-    //     return "double";
-    //   }else if(prev_score === -1){
-    //     return "strike";
-    //   }else if(prev_score === -2){
-    //     return "spare";
-    //   }
-    //     return "none";
-    // }
-
     private prevFrameScoreCheck(now_s_index: number): string {
         // PREV FRAME SCORE CHECK ( STRIKE? SPARE? )
         let score = {prev1: 0, prev2: 0, before_prev1: 0, before_prev2: 0};

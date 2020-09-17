@@ -3,52 +3,52 @@ import './InputModalModule.css';
 import playerStore from "../../stores/playerStore";
 import {inject, observer} from "mobx-react";
 
-interface InputModalProps{
-  onClose: any;
+interface InputModalProps {
+    onClose: any;
 }
 
 @inject('playerStore')
 @observer
 export class InputModal extends React.Component<InputModalProps> {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  getPlayers = () => {
-    return playerStore.getPlayers();
-  }
+    getPlayers = () => {
+        return playerStore.getPlayers();
+    }
 
-  handleChange = (e) => {
-    playerStore.setPlayers(e.target.id, e.target.value);
-  }
-  render() {
+    handleChange = (e) => {
+        playerStore.setPlayers(e.target.id, e.target.value);
+    }
 
-    const { onClose } = this.props;
-    // console.log(onClose);
+    render() {
 
-    const players = this.getPlayers();
-    console.log(players.length);
-    const players_list = players.map((value, key) =>
-      <div key={key} id={key}>
-        <label className={"label"}>{key + 1}Player</label>
-        {players[key] !== null && players[key] !== "" ?
-            <input id={key} defaultValue={players[key]} maxLength={3} onChange={this.handleChange}/>
-            :
-            <input id={key} placeholder="플레이어 이름을 입력하세요." maxLength={3} onChange={this.handleChange}/>
-        }
-      </div>);
+        const {onClose} = this.props;
+        // console.log(onClose);
 
-    return (
+        const players = this.getPlayers();
+        console.log(players.length);
+        const players_list = players.map((value, key) =>
+            <div key={key} id={key}>
+                <label className={"label"}>{key + 1}Player</label>
+                {players[key] !== null && players[key] !== "" ?
+                    <input id={key} defaultValue={players[key]} maxLength={3} onChange={this.handleChange}/>
+                    :
+                    <input id={key} placeholder="플레이어 이름을 입력하세요." maxLength={3} onChange={this.handleChange}/>
+                }
+            </div>);
 
-      <div className={"input_modal"}>
-        <div className={"content"}>
-          <h3>플레이어 목록</h3>
-          {/*<p>궁시렁 궁시렁 내용입니다.</p>*/}
-          <div>{players_list}</div>
-          <button className={"close_button"} onClick={onClose}>확인</button>
-        </div>
-      </div>
+        return (
 
-    );
-  }
+            <div className={"input_modal"}>
+                <div className={"content"}>
+                    <h3>플레이어 목록</h3>
+                    <div>{players_list}</div>
+                    <button className={"close_button"} onClick={onClose}>확인</button>
+                </div>
+            </div>
+
+        );
+    }
 }

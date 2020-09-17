@@ -56,7 +56,6 @@ export class GameSetting extends React.Component<SettingProps, SettingState> {
     }
 
 
-
     render() {
 
         console.log("GameSetting render in app");
@@ -66,25 +65,34 @@ export class GameSetting extends React.Component<SettingProps, SettingState> {
             <div className={"set_frame"}>
                 {/* 1-1. 템플릿 생성 및 호출(일단은 임시로 여기서 작성) */}
 
-                <div className={"set_title"}> Bowling Game</div>
+                <img src="./../../../public/logo.png"/>
+
+                {/*<div className={"set_title"}> Bowling Game</div>*/}
                 <div className={"set_contents"}> Player Count : {this.getPlayerNumber()}
 
                     <button className={"up_btn"} onClick={this.increasePlayerNumber}>+1</button>
                     <button className={"down_btn"} onClick={this.decreasePlayerNumber}>-1</button>
                 </div>
-                <div><button className={"set_btn"} onClick={() => {this.setPlayerNumber(); this.handleOpenModal();}}>사용자 설정</button>
-                    {this.state.modal &&  <InputModal onClose={this.handleCloseModal}/>}</div>
+                <div>
+                    <button className={"set_btn"} onClick={() => {
+                        this.setPlayerNumber();
+                        this.handleOpenModal();
+                    }}>사용자 설정
+                    </button>
+                    {this.state.modal && <InputModal onClose={this.handleCloseModal}/>}</div>
 
                 {player_number >= 1 && player_number <= 4 ?
                     (
-                    <button className={"start_btn"} onClick={this.setPlayerNumber}>
-                        <Link to="/screen" className={"start_link"}>GameStart</Link>
-                    </button>)
+                        <button className={"start_btn"} onClick={this.setPlayerNumber}>
+                            <Link to="/screen" className={"start_link"}>GameStart</Link>
+                        </button>
+                    )
                     :
                     (
-                    <button className={"start_btn"} onClick={this.playerNumberAlert}>
-                        <Link to="/" className={"start_link"}>GameStart</Link>
-                    </button>)
+                        <button className={"start_btn"} onClick={this.playerNumberAlert}>
+                            <Link to="/" className={"start_link"}>GameStart</Link>
+                        </button>
+                    )
                 }
 
             </div>

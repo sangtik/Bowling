@@ -12,35 +12,38 @@
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    color: #617b91
+    color: #617b91;
+    width: 20%;
+    height: 10%;
 }
 
-.scr_subtitle{
+.scr_subtitle {
+    font-family: "HY강M";
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-weight: bold;
     text-align: center;
     height: 5%;
     color: #617b91
 }
 
-.scr_number{
+.scr_number {
     margin-right: 50px;
 }
 
-.scr_contents{
+.scr_contents {
     /*background: blue;*/
     height: 600px;
     /*width: 1500px;*/
 }
 
-.scr_footer{
+.scr_footer {
     bottom: 100px;
 }
 
 
 .hit_btn {
-    font-family:"HY강M";
+    font-family: "HY강M";
     background: #ffe000;
     color: #617b91;
     border-color: #f5fff0;
@@ -52,7 +55,7 @@
 
 .hit_btn:hover {
     height: 50px;
-    font-family:"HY강M";
+    font-family: "HY강M";
     background: honeydew;
     color: #c8cd3f;
     border-color: #f5fff0;

@@ -7,7 +7,6 @@ interface FrameProps {
 }
 
 export class FrameLabel extends React.Component<FrameProps> {
-    // 프레임 위 번호
     constructor(props) {
         super(props);
     }
