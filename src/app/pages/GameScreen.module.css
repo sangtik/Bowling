@@ -2,14 +2,17 @@
     text-align: center;
     width: 100%;
     height: 100%;
-    background: whitesmoke;
+    /*background: whitesmoke;*/
+    /*background: #020033;*/
+    background: #1b232a;
 }
 
 .scr_title {
+    padding-top: 30px;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    color: #6b492f;
+    color: #617b91
 }
 
 .scr_subtitle{
@@ -18,7 +21,7 @@
     font-weight: bold;
     text-align: center;
     height: 5%;
-    color: #6b492f;
+    color: #617b91
 }
 
 .scr_number{
@@ -37,15 +40,21 @@
 
 
 .hit_btn {
-    background: rgba(0, 0, 0, 0);
-    color: #c8cd3f;
+    font-family:"HY강M";
+    background: #ffe000;
+    color: #617b91;
     border-color: #f5fff0;
     border-radius: 5px;
-    margin-right: 1px;
+    margin-right: 5px;
+    transition: all 0.7s ease-out;
+    height: 50px;
 }
 
 .hit_btn:hover {
+    height: 50px;
+    font-family:"HY강M";
     background: honeydew;
-    border-color:peru;
-    color: peru;
+    color: #c8cd3f;
+    border-color: #f5fff0;
+    transition: all 0.7s ease-out;
 }

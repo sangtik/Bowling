@@ -11,6 +11,7 @@
 }
 
 .input_modal .content {
+    font-family:"HY강M";
     background: white;
     padding: 1rem;
     width: 400px;
@@ -18,6 +19,7 @@
 }
 
 .label{
+    font-family:"HY강M";
     /*background: white;*/
     padding: 1rem;
     width: 30px;
@@ -26,6 +28,8 @@
 }
 
 .close_button{
-
+    background: #1b232a;
+    color: white;
+    font-family:"HY강M";
     margin-top: 30px;
 }

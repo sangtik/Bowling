@@ -32,9 +32,9 @@ export class InputModal extends React.Component<InputModalProps> {
       <div key={key} id={key}>
         <label className={"label"}>{key + 1}Player</label>
         {players[key] !== null && players[key] !== "" ?
-            <input id={key} defaultValue={players[key]} maxLength={6} onChange={this.handleChange}/>
+            <input id={key} defaultValue={players[key]} maxLength={3} onChange={this.handleChange}/>
             :
-            <input id={key} placeholder="플레이어 이름을 입력하세요." maxLength={6} onChange={this.handleChange}/>
+            <input id={key} placeholder="플레이어 이름을 입력하세요." maxLength={3} onChange={this.handleChange}/>
         }
       </div>);
 

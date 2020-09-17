@@ -1,4 +1,5 @@
 .label{
+    font-family:"HY강M";
     display: inline-block;
     font-size: 20px;
     margin-top: 20px;
@@ -9,6 +10,7 @@
     /*width: 100px;*/
     line-height: 30px;
     height: 30px;
-    color: #6b492f;
+    /*color: #6b492f;*/
     /*background: #4cff00;*/
+    color: #617b91
 }

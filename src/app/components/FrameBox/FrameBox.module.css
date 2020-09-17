@@ -2,23 +2,23 @@
     display: inline-block;
     width: 100px;
     height: 90px;
-    border: 1px solid black;
+    border: 1px solid #021e2f;
     margin-top: -4px;
 }
 .frame_top {
     height: 50%;
     float: top;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #021e2f;
     line-height: 45px;
     box-sizing: border-box;
-    background: #ff0;
+    background: #ffe000;
 }
 .frame_bottom {
     height: 50%;
     float: bottom;
     line-height: 45px;
     box-sizing: border-box;
-    background: #0ff;
+    background: #34b6e5;
 }
 
 .frame_top_left {
@@ -28,8 +28,8 @@
     /*line-height: 45px;*/
     box-sizing: border-box;
     text-align: center;
-    background: #ff0;
-    border-right: 1px solid black;
+    background: #ffe000;
+    border-right: 1px solid #021e2f;
 }
 
 .frame_top_right {
@@ -38,7 +38,7 @@
     height: 100%;
     /*line-height: 45px;*/
     box-sizing: border-box;
-    background: #ff0;
+    background: #ffe000;
     /*border: 1px solid black;*/
 }
 
@@ -47,8 +47,8 @@
     float: left;
     height: 100%;
     box-sizing: border-box;
-    background: #ff0;
-    border-right: 1px solid black;
+    background: #ffe000;
+    border-right: 1px solid #021e2f;
     /*border: 1px solid black;*/
 }
 
@@ -57,8 +57,8 @@
     float: left;
     height: 100%;
     box-sizing: border-box;
-    background: #ff0;
-    border-right: 1px solid black;
+    background: #ffe000;
+    border-right: 1px solid #021e2f;
     /*border: 1px solid black;*/
 }
 
@@ -67,6 +67,6 @@
     float: right;
     height: 100%;
     box-sizing: border-box;
-    background: #ff0;
+    background: #ffe000;
     /*border: 1px solid black;*/
 }

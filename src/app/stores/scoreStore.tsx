@@ -189,24 +189,30 @@ export class ScoreStore {
 
             // 1~9 Frame
         } else if (score === 10 && this.s_index === 0) { // STRIKE
+            console.log("10F NONE STRIKE");
             this.setFrameScore("strike", score);
             this.setScore(score);
             this.nextPlayer();
 
         } else if ((prev_score + score) === 10 && this.s_index === 1) { // SPARE
+            console.log("1~9F NONE SPARE");
             this.setFrameScore("spare", score);
             this.setScore(score);
             this.nextPlayer();
 
         } else if (this.s_index === 0) { // 한번 쳤을 경우 (score index 변경)
+            console.log("1~9F NONE 0");
             this.setFrameScore("none", score);
             this.setScore(score);
             this.nextScore();
 
         } else if (this.s_index === 1 && this.f_index < 9) { // 두번째 쳤을 경우
+            console.log("1~9F NONE 1");
             this.setFrameScore("none", score);
+            console.log("p_index0 : " + this.p_index);
             this.setScore(score);
             this.nextPlayer();
+            console.log("p_index1 : " + this.p_index);
         }
 
         // 전체 스코어 확인
@@ -226,10 +232,23 @@ export class ScoreStore {
         // }
     }
 
+    getNextTurn() {
+        let next_p_index: number = 0;
+        if (this.f_index < 9) {
+            if (this.s_index === 1)
+                next_p_index = (this.p_index + 1) % this.p_max;
+        } else {
+            if (this.s_index === 2)
+                next_p_index = (this.p_index + 1) % this.p_max;
+        }
+        console.log("next : " + next_p_index);
+        return next_p_index;
+    }
+
     getTotal(p_index: number): number {
         let total = 0;
         for (let i = 0; i < this.f_scores[p_index].length; i++) {
-            if (this.f_scores[p_index][i] > 0)
+            if (this.f_scores[p_index][i] >= 0)
                 total += this.f_scores[p_index][i];
         }
         // console.log("p_index : " + p_index + " total : " + total);
