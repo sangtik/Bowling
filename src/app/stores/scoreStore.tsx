@@ -50,7 +50,7 @@ export class ScoreStore {
         // -1 STRIKE, -2 SPARE
     }
 
-    @action private setPrevFrameScore = (status: string, score: number) => {
+    @action private setPrevFrameScore = (prev_score:number, status: string, score: number) => {
         // console.log("setPrevFrameScore(status, score) : " + status + " , " + score);
         switch (status) {
             case "double" :
@@ -60,10 +60,11 @@ export class ScoreStore {
                         this.f_scores[this.p_index][this.f_index - 2] = 20;
                         this.f_scores[this.p_index][this.f_index - 2] += score;
                     }
-                    if (this.s_index === 0) {
+                    else if (this.s_index === 1) {
                         this.f_scores[this.p_index][this.f_index - 1] = 10;
+                        this.f_scores[this.p_index][this.f_index - 1] += score;
+                        this.f_scores[this.p_index][this.f_index - 1] += prev_score;
                     }
-                    this.f_scores[this.p_index][this.f_index - 1] += score;
                 } else {
                     this.f_scores[this.p_index][this.f_index - 1] = 10;
                     this.f_scores[this.p_index][this.f_index - 1] += score;
@@ -72,10 +73,11 @@ export class ScoreStore {
 
             case "strike" :
                 console.log("이전에 스트라이크였음!!!");
-                if (this.s_index === 0) {
+                if (this.s_index === 1) {
                     this.f_scores[this.p_index][this.f_index - 1] = 10;
+                    this.f_scores[this.p_index][this.f_index - 1] += score;
+                    this.f_scores[this.p_index][this.f_index - 1] += prev_score;
                 }
-                this.f_scores[this.p_index][this.f_index - 1] += score;
                 break;
 
             case "spare" :
@@ -151,7 +153,7 @@ export class ScoreStore {
 
         // 이전 프레임 점수 갱신
         const prevFrameScore = this.prevFrameScoreCheck(point);
-        this.setPrevFrameScore(prevFrameScore, score);
+        this.setPrevFrameScore(prev_score, prevFrameScore, score);
 
         // 현재 프레임 점수
         // 10 Frame

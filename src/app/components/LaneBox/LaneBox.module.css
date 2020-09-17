@@ -88,8 +88,10 @@
 .total_box {
     display: inline-block;
     width: 100px;
-    height: 90px;
+    height: 80px;
+    line-height: 90px;
     margin-right: 325px;
+
     float: right;
     border: 1px solid black;
 }

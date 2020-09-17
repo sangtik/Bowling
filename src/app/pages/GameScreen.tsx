@@ -4,7 +4,6 @@ import scoreStore from "../stores/scoreStore";
 import {LaneBox} from "../components/LaneBox";
 import {inject} from "mobx-react";
 import "./GameScreen.module.css"
-import {action} from "mobx";
 import {FrameLabel} from "../components/FrameLabel";
 
 @inject('playerStore', 'scoreStore')
@@ -25,19 +24,20 @@ export class GameScreen extends React.Component {
 
   render() {
 
-    const player_num = playerStore.getPlayerNumber();
-    if (player_num < 1 || player_num > 4) return null;
+    const players = playerStore.getPlayers();
+    const player_number = playerStore.getPlayerNumber();
+    if (player_number < 1 || player_number > 4) return null;
 
-    const header = Array(10).fill(null);
-    const lane = Array(player_num).fill(null);
-    const headers = header.map((value, key) => <FrameLabel key={key} f_index={key}>{value}</FrameLabel>);
-    const lanes = lane.map((value, key) => <LaneBox key={key} p_index={key}>{value}</LaneBox>);
+    const frames = Array(10).fill(null);
+
+    const headers = frames.map((value, key) => <FrameLabel key={key} f_index={key}>{value}</FrameLabel>);
+    const lanes = players.map((value, key) => <LaneBox key={key} p_index={key}>{value}</LaneBox>);
 
     return (
       <>
         <div className={"scr_layout"}>
           <div className={"scr_title"}> Bowling Game</div>
-          <div className={"scr_subtitle"}> 게임 인원 : {player_num} </div>
+          <div className={"scr_subtitle"}> 게임 인원 : {player_number} </div>
           <div className={"scr_number"}>{headers}</div>
           <div className={"scr_contents"}>{lanes}</div>
           <div className={"scr_footer"}>
@@ -49,7 +49,3 @@ export class GameScreen extends React.Component {
     );
   }
 }
-
-// GameScreen.defaultProps = {
-//     number: 1
-// };

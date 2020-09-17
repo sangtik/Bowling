@@ -21,7 +21,7 @@ export class LaneBox extends React.Component<LaneProps> {
   }
 
   render() {
-    const p_index = this.props.p_index;
+    const { p_index } = this.props;
     const frame_max_num: number = 10;
     const frames = Array(frame_max_num).fill(null);
     const frame_list = frames.map((value, key) => <FrameBox key={key} p_index={p_index} f_index={key}>{value}</FrameBox>);
