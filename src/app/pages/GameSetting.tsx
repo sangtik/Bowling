@@ -77,9 +77,11 @@ export class GameSetting extends React.Component<SettingProps, SettingState> {
                     <button className={"set_btn"} onClick={() => {
                         this.setPlayerNumber();
                         this.handleOpenModal();
-                    }}>사용자 설정
+                    }}>
+                        사용자 설정
                     </button>
-                    {this.state.modal && <InputModal onClose={this.handleCloseModal}/>}</div>
+                    {this.state.modal && <InputModal onClose={this.handleCloseModal}/>}
+                </div>
 
                 {player_number >= 1 && player_number <= 4 ?
                     (

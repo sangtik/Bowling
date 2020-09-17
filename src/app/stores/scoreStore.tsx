@@ -96,7 +96,7 @@ export class ScoreStore {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    hit = (all_hit) => {
+    @action hit = (all_hit) => {
         if (this.f_index === this.f_max) {
             console.log("Game End...!!!!");
             return false;

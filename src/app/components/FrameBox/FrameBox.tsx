@@ -2,18 +2,33 @@ import * as React from 'react';
 import "./FrameBox.module.css"
 import {inject, observer} from "mobx-react";
 import scoreStore from "../../stores/scoreStore";
+import {ScoreModal} from "../ScoreModal";
+import {InputModal} from "../InputModal";
 
 interface FrameProps {
     p_index: number,
     f_index: number;
 }
 
+interface FrameState {
+    modal: boolean;
+}
+
 @inject('scoreStore')
 @observer
-export class FrameBox extends React.Component<FrameProps> {
+export class FrameBox extends React.Component<FrameProps, FrameState> {
 // 점수 기록 컴포넌트를 관리
     constructor(props) {
         super(props);
+        this.state = {modal:false};
+    }
+
+    handleOpenModal = () => {
+        this.setState({modal: true});
+    }
+
+    handleCloseModal = () => {
+        this.setState({modal: false});
     }
 
     blankCheck = (first_score: number, second_score: number, frame_total: number) => {
@@ -51,6 +66,7 @@ export class FrameBox extends React.Component<FrameProps> {
     getStatus10F = (first_score: number, second_score: number, third_score: number) => {
         // 프레임 상태 가져오기
         let status: any = {first: "", second: ""};
+
         if (first_score === 10 && second_score == 10 && third_score == 10) {
             status.first = "turkey";
             status.second = "none";
@@ -68,6 +84,7 @@ export class FrameBox extends React.Component<FrameProps> {
             status.second = "none";
         }
         console.log("status.first : [" + status.first + "] status.first : [" + status.second + "]");
+
         return status;
     }
 
@@ -76,14 +93,28 @@ export class FrameBox extends React.Component<FrameProps> {
         const {first_score, second_score, third_score} = this.getScore(p_index, f_index);
         const frame_total = this.getFrameTotalScore(p_index, f_index);
         const blank = this.blankCheck(first_score, second_score, frame_total);
+
         console.log("first_score, second_score, third_score : " + first_score + " " + second_score + " " + third_score);
+
         let status = (f_index < 9) ? this.getStatus(first_score, second_score) : this.getStatus10F(first_score, second_score, third_score);
+
+        // if (first_score === 10 || second_score === 10 || third_score === 10)
+        // {
+        //     console.log("STRIKE!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //     this.handleOpenModal();
+        // }
+
 
         // console.log("p_index : " +p_index + " f_index : " + f_index + " Total : " + frame_total);
 
         return (
             <>
                 <div className={"frame_layout"}>
+
+                    <button onClick={() => {this.handleOpenModal();}} />
+
+                    {this.state.modal && <ScoreModal onClose={this.handleCloseModal}/>}
+
                     <div className={"frame_top"}>
                         {f_index !== 9 ?
                             (<>

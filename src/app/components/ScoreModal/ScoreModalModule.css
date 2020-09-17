@@ -1,0 +1,35 @@
+.score_modal {
+    background: rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score_modal .content {
+    font-family:"HY강M";
+    background: white;
+    padding: 1rem;
+    width: 400px;
+    height: auto;
+}
+
+.label{
+    font-family:"HY강M";
+    /*background: white;*/
+    padding: 1rem;
+    width: 30px;
+    height: 40px;
+
+}
+
+.close_button{
+    background: #1b232a;
+    color: white;
+    font-family:"HY강M";
+    margin-top: 30px;
+}

@@ -2,11 +2,13 @@ import * as React from 'react';
 import playerStore from "../stores/playerStore";
 import scoreStore from "../stores/scoreStore";
 import {LaneBox} from "../components/LaneBox";
-import {inject} from "mobx-react";
+import {inject, observer} from "mobx-react";
 import "./GameScreen.module.css"
 import {FrameLabel} from "../components/FrameLabel";
+import {GameSetting} from "./GameSetting";
 
 @inject('playerStore', 'scoreStore')
+@observer
 export class GameScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -26,13 +28,11 @@ export class GameScreen extends React.Component {
 
         const players = playerStore.getPlayers();
         const player_number = playerStore.getPlayerNumber();
+        console.log("player_num : " + player_number);
         if (player_number < 1 || player_number > 4) return null;
-
         const frames = Array(10).fill(null);
-
         const headers = frames.map((value, key) => <FrameLabel key={key} f_index={key}>{value}</FrameLabel>);
         const lanes = players.map((value, key) => <LaneBox key={key} p_index={key}>{value}</LaneBox>);
-
         return (
             <>
                 <div className={"scr_layout"}>

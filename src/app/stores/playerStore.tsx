@@ -2,6 +2,7 @@ import {action, observable} from 'mobx';
 
 export class PlayerStore {
     @observable players: any = Array(null).fill(null);
+    // @observable players = new Array("P1");
 
     @action delPlayers = () => {
         if (this.players.length > 1) {
@@ -18,7 +19,6 @@ export class PlayerStore {
     }
 
     getPlayerNumber = () => {
-        // console.log(this.players.length)
         return this.players.length;
     }
 
