@@ -10,25 +10,12 @@ interface FrameProps {
     f_index: number;
 }
 
-interface FrameState {
-    modal: boolean;
-}
-
 @inject('scoreStore')
 @observer
-export class FrameBox extends React.Component<FrameProps, FrameState> {
+export class FrameBox extends React.Component<FrameProps> {
 // 점수 기록 컴포넌트를 관리
     constructor(props) {
         super(props);
-        this.state = {modal:false};
-    }
-
-    handleOpenModal = () => {
-        this.setState({modal: true});
-    }
-
-    handleCloseModal = () => {
-        this.setState({modal: false});
     }
 
     blankCheck = (first_score: number, second_score: number, frame_total: number) => {
@@ -98,94 +85,80 @@ export class FrameBox extends React.Component<FrameProps, FrameState> {
 
         let status = (f_index < 9) ? this.getStatus(first_score, second_score) : this.getStatus10F(first_score, second_score, third_score);
 
-        // if (first_score === 10 || second_score === 10 || third_score === 10)
-        // {
-        //     console.log("STRIKE!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        //     this.handleOpenModal();
-        // }
-
-
-        // console.log("p_index : " +p_index + " f_index : " + f_index + " Total : " + frame_total);
-
         return (
-            <>
-                <div className={"frame_layout"}>
-
-                    <button onClick={() => {this.handleOpenModal();}} />
-
-                    {this.state.modal && <ScoreModal onClose={this.handleCloseModal}/>}
-
-                    <div className={"frame_top"}>
-                        {f_index !== 9 ?
-                            (<>
-                                    {status === "strike" ?
-                                        <>X</>
-                                        :
-                                        <>
-                                            <div className={"frame_top_left"}>{first_score}</div>
-                                            {status === "spare" ?
-                                                <div className={"frame_top_right"}>/</div>
-                                                :
-                                                <div className={"frame_top_right"}>{second_score}</div>
-                                            }
-                                        </>
+          <>
+              <div className={"frame_layout"}>
+                  <div className={"frame_top"}>
+                      {f_index !== 9 ?
+                        (<>
+                              {status === "strike" ?
+                                <>X</>
+                                :
+                                <>
+                                    <div className={"frame_top_left"}>{first_score}</div>
+                                    {status === "spare" ?
+                                      <div className={"frame_top_right"}>/</div>
+                                      :
+                                      <div className={"frame_top_right"}>{second_score}</div>
                                     }
                                 </>
-                            )
-                            :
-                            (
-                                <>
-                                    {status.first === "turkey" &&
-                                    <>
-                                        <div className={"frame_top_first"}>X</div>
-                                        <div className={"frame_top_second"}>X</div>
-                                        <div className={"frame_top_third"}>X</div>
-                                    </>}
-                                    {status.first === "double" &&
-                                    <>
-                                        <div className={"frame_top_first"}>X</div>
-                                        <div className={"frame_top_second"}>X</div>
-                                        <div className={"frame_top_third"}>{third_score}</div>
-                                    </>}
-                                    {(status.first === "strike" && status.second === "spare") &&
-                                    <>
-                                        <div className={"frame_top_first"}>X</div>
-                                        <div className={"frame_top_second"}>{second_score}</div>
-                                        <div className={"frame_top_third"}>/</div>
-                                    </>}
-                                    {(status.first === "strike" && status.second === "none") &&
-                                    <>
-                                        <div className={"frame_top_first"}>X</div>
-                                        <div className={"frame_top_second"}>{second_score}</div>
-                                        <div className={"frame_top_third"}>{third_score}</div>
-                                    </>}
-                                    {(status.first === "spare" && status.second === "strike") &&
-                                    <>
-                                        <div className={"frame_top_first"}>{first_score}</div>
-                                        <div className={"frame_top_first"}>/</div>
-                                        <div className={"frame_top_third"}>X</div>
-                                    </>}
-                                    {(status.first === "spare" && status.second === "none") &&
-                                    <>
-                                        <div className={"frame_top_first"}>{first_score}</div>
-                                        <div className={"frame_top_first"}>/</div>
-                                        <div className={"frame_top_third"}>{third_score}</div>
-                                    </>}
-                                    {(status.first === "none" && status.second === "none") &&
-                                    <>
-                                        <div className={"frame_top_first"}>{first_score}</div>
-                                        <div className={"frame_top_second"}>{second_score}</div>
-                                        <div className={"frame_top_third"}>{third_score}</div>
-                                    </>}
-                                </>
-                            )
-                        }
-                    </div>
-                    <div className={"frame_bottom"}>
-                        {blank ? <div>{'　'}</div> : <div>{frame_total || '　'}</div>}
-                    </div>
-                </div>
-            </>
+                              }
+                          </>
+                        )
+                        :
+                        (
+                          <>
+                              {status.first === "turkey" &&
+                              <>
+                                  <div className={"frame_top_first"}>X</div>
+                                  <div className={"frame_top_second"}>X</div>
+                                  <div className={"frame_top_third"}>X</div>
+                              </>}
+                              {status.first === "double" &&
+                              <>
+                                  <div className={"frame_top_first"}>X</div>
+                                  <div className={"frame_top_second"}>X</div>
+                                  <div className={"frame_top_third"}>{third_score}</div>
+                              </>}
+                              {(status.first === "strike" && status.second === "spare") &&
+                              <>
+                                  <div className={"frame_top_first"}>X</div>
+                                  <div className={"frame_top_second"}>{second_score}</div>
+                                  <div className={"frame_top_third"}>/</div>
+                              </>}
+                              {(status.first === "strike" && status.second === "none") &&
+                              <>
+                                  <div className={"frame_top_first"}>X</div>
+                                  <div className={"frame_top_second"}>{second_score}</div>
+                                  <div className={"frame_top_third"}>{third_score}</div>
+                              </>}
+                              {(status.first === "spare" && status.second === "strike") &&
+                              <>
+                                  <div className={"frame_top_first"}>{first_score}</div>
+                                  <div className={"frame_top_first"}>/</div>
+                                  <div className={"frame_top_third"}>X</div>
+                              </>}
+                              {(status.first === "spare" && status.second === "none") &&
+                              <>
+                                  <div className={"frame_top_first"}>{first_score}</div>
+                                  <div className={"frame_top_first"}>/</div>
+                                  <div className={"frame_top_third"}>{third_score}</div>
+                              </>}
+                              {(status.first === "none" && status.second === "none") &&
+                              <>
+                                  <div className={"frame_top_first"}>{first_score}</div>
+                                  <div className={"frame_top_second"}>{second_score}</div>
+                                  <div className={"frame_top_third"}>{third_score}</div>
+                              </>}
+                          </>
+                        )
+                      }
+                  </div>
+                  <div className={"frame_bottom"}>
+                      {blank ? <div>{'　'}</div> : <div>{frame_total || '　'}</div>}
+                  </div>
+              </div>
+          </>
         );
     }
 }

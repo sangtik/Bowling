@@ -6,12 +6,28 @@ import {inject, observer} from "mobx-react";
 import "./GameScreen.module.css"
 import {FrameLabel} from "../components/FrameLabel";
 import {GameSetting} from "./GameSetting";
+import {ScoreModal} from "../components/ScoreModal";
 
+interface ScreenProps {
+}
+interface ScreenState {
+    modal: boolean;
+}
 @inject('playerStore', 'scoreStore')
 @observer
-export class GameScreen extends React.Component {
+export class GameScreen extends React.Component<ScreenProps, ScreenState> {
+    static defaultProps: {};
     constructor(props) {
         super(props);
+        this.state = {modal:false};
+    }
+
+    handleOpenModal = () => {
+        this.setState({modal: true});
+    }
+
+    handleCloseModal = () => {
+        this.setState({modal: false});
     }
 
     all_hit = () => {
@@ -42,8 +58,9 @@ export class GameScreen extends React.Component {
                     <div className={"scr_number"}>{headers}</div>
                     <div className={"scr_contents"}>{lanes}</div>
                     <div className={"scr_footer"}>
-                        <button className={"hit_btn"} onClick={() => this.hit()}> 그냥 치기</button>
-                        <button className={"hit_btn"} onClick={() => this.all_hit()}> 모두 처리</button>
+                        <button className={"hit_btn"} onClick={() => {this.hit(); this.handleOpenModal();} }> 그냥 치기</button>
+                        <button className={"hit_btn"} onClick={() => {this.all_hit(); this.handleOpenModal();} }> 모두 처리</button>
+                        {this.state.modal && <ScoreModal onClose={this.handleCloseModal}/>}
                     </div>
                 </div>
             </>

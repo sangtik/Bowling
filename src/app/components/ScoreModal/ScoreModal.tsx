@@ -13,7 +13,7 @@ export class ScoreModal extends React.Component<ScoreModalProps> {
     }
 
     componentDidMount() {
-        setTimeout(this.props.onClose, 2000);
+        setTimeout(this.props.onClose, 1000);
     }
 
     render() {

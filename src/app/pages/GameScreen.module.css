@@ -24,12 +24,13 @@
     margin-top: 10px;
     font-weight: bold;
     text-align: center;
-    height: 5%;
+    height: 2%;
     color: #617b91
 }
 
 .scr_number {
-    margin-right: 50px;
+    margin-right: 10px;
+    /*margin-right: -1%;*/
 }
 
 .scr_contents {
