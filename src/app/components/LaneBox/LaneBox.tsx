@@ -44,6 +44,7 @@ export class LaneBox extends React.Component<LaneProps, LaneState> {
         const frames = Array(frame_max_num).fill(null);
         const frame_list = frames.map((value, key) =>
           <FrameBox key={key} p_index={p_index} f_index={key}>{value}</FrameBox>);
+
         const players = this.getPlayer();
         const player_name = players[p_index];
         const rank = this.getRank();

@@ -6,6 +6,8 @@
     margin-top: -4px;
 }
 .frame_top {
+    color: #021e2f;
+    font-weight: bold;
     height: 50%;
     float: top;
     border-bottom: 1px solid #021e2f;
@@ -14,6 +16,8 @@
     background: #ffe000;
 }
 .frame_bottom {
+    color: #021e2f;
+    font-weight: bold;
     height: 50%;
     float: bottom;
     line-height: 45px;
@@ -22,6 +26,8 @@
 }
 
 .frame_top_left {
+    color: #021e2f;
+    font-weight: bold;
     width: 50%;
     height: 100%;
     float: left;
@@ -33,6 +39,8 @@
 }
 
 .frame_top_right {
+    color: #021e2f;
+    font-weight: bold;
     width: 50%;
     float: right;
     height: 100%;
@@ -43,6 +51,8 @@
 }
 
 .frame_top_first {
+    color: #021e2f;
+    font-weight: bold;
     width: 33%;
     float: left;
     height: 100%;
@@ -53,6 +63,8 @@
 }
 
 .frame_top_second {
+    color: #021e2f;
+    font-weight: bold;
     width: 33%;
     float: left;
     height: 100%;
@@ -63,6 +75,8 @@
 }
 
 .frame_top_third {
+    color: #021e2f;
+    font-weight: bold;
     width: 34%;
     float: right;
     height: 100%;

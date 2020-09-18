@@ -2,6 +2,7 @@ import * as React from 'react';
 import './InputModalModule.css';
 import playerStore from "../../stores/playerStore";
 import {inject, observer} from "mobx-react";
+// import { IconAI } from "react-icons/ai";
 
 interface InputModalProps {
     onClose: any;
@@ -31,6 +32,7 @@ export class InputModal extends React.Component<InputModalProps> {
         console.log(players.length);
         const players_list = players.map((value, key) =>
             <div key={key} id={key}>
+                {/*<AiOutlineSmile />*/}
                 <label className={"label"}>{key + 1}Player</label>
                 {players[key] !== null && players[key] !== "" ?
                     <input className={"input_box"} id={key} defaultValue={players[key]} maxLength={3} onChange={this.handleChange}/>
