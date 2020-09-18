@@ -10,7 +10,10 @@ Initial run:
 
 For simplicity sake Webpack Hot Module Reloading is disabled. If you want to use HMR, see the [Reactive2015 demo](https://github.com/mobxjs/mobx-reactive2015-demo) to see a valid setup.
 
-to do list
+made by sangtik.
 
-1. after double & strike, score unvisible.
-2. css 
+function 1. bowling score compute.
+function 2. available setting player nick-name & player number.
+function 3. score effect(ex. turkey, double, strike...)
+function 4. show playing player.
+function 5. rank by score.
