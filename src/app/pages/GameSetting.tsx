@@ -51,6 +51,10 @@ export class GameSetting extends React.Component<SettingProps, SettingState> {
         scoreStore.setPlayerNum(this.getPlayerNumber());
     }
 
+    setInitialize = () => {
+        scoreStore.setInitialize();
+    }
+
     getPlayerNumber = () => {
         return playerStore.getPlayerNumber();
     }
@@ -85,7 +89,7 @@ export class GameSetting extends React.Component<SettingProps, SettingState> {
 
                 {player_number >= 1 && player_number <= 4 ?
                     (
-                        <button className={"start_btn"} onClick={this.setPlayerNumber}>
+                        <button className={"start_btn"} onClick={()=>{this.setInitialize(); this.setPlayerNumber();}}>
                             <Link to="/screen" className={"start_link"}>GameStart</Link>
                         </button>
                     )

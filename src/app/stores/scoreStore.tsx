@@ -23,6 +23,16 @@ export class ScoreStore {
         this.f_scores = Array.from(Array(this.p_max), () => Array(this.f_max).fill(null));
     }
 
+    @action setInitialize = () => { // 기록 초기화
+        this.p_index = 0;
+        this.f_index = 0;
+        this.s_index = 0;
+        this.point = 0;
+        this.scores = null;
+        this.f_scores = null;
+        this.game_set = false;
+    }
+
     @action private setScore = (score) => {
         console.log("insert score : " + this.p_index + " / " + this.f_index + " / " + this.s_index + " / " + score);
         this.scores[this.p_index][(this.f_index * 2) + this.s_index] = score;
@@ -167,7 +177,10 @@ export class ScoreStore {
         // this.printAllScore();
         // this.printAllFrameScore();
 
-        if(this.f_index === this.f_max) this.game_set = true;
+        if(this.f_index === this.f_max){
+            this.game_set = true;
+            console.log("Game End..!")
+        }
 
         return thisFrameScore;
     }
@@ -197,7 +210,7 @@ export class ScoreStore {
 
     getRank(p_index: number): number {
         let rank: number = 0;
-        console.log("game_set : " + this.game_set);
+        // console.log("game_set : " + this.game_set);
 
         let totals = new Array(this.p_max); // 점수 담을 그릇 생성
         for (let i = 0; i < this.p_max; i++) { // 총합 점수 담기
@@ -208,7 +221,7 @@ export class ScoreStore {
             if (totals[p_index] < totals[i]) rank++;
         }
         // 인자로 들어온 인덱스 값과 일치하는 등수 확인
-        console.log("rank : [" + rank + "]");
+        // console.log("rank : [" + rank + "]");
         if (!this.game_set) rank = -1; // 게임 끝났는지 확인
         return rank;
     }

@@ -25,8 +25,12 @@ export class LaneBox extends React.Component<LaneProps, LaneState> {
     }
 
     turnCheck = (p_index: number): boolean => {
-        let turn: boolean = true;
-        if (p_index !== scoreStore.p_index) turn = false;
+        // let turn: boolean = true;
+        // if ((p_index !== scoreStore.p_index) && !scoreStore.game_set) turn = false;
+
+        let turn: boolean = false;
+        if ((p_index === scoreStore.p_index) && !scoreStore.game_set) turn = true;
+
         return turn;
     }
 
