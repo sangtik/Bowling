@@ -256,14 +256,30 @@ export class ScoreStore {
         let rt_val:string = "none";
 
         // 10 Frame
-        if (this.f_index === 9 && (this.s_index === 0 || this.s_index === 1) && score === 10) {// 10F STRIKE
-            console.log("10F STRIKE");
+        if (this.f_index === 9 && this.s_index === 0  && score === 10) {// 10F STRIKE0
+            console.log("10F STRIKE0");
             this.setFrameScore("none", score);
             this.setScore(score);
             this.nextScore();
             rt_val = "strike";
 
-        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index === 1 && prev_score !== 10) {// 10F SPARE
+        }else if (this.f_index === 9 &&  this.s_index === 1 && score === 10) {// 10F STRIKE1
+            console.log("10F STRIKE1");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextScore();
+            (prev_score === 0) ? rt_val = "spare" : rt_val = "strike";
+
+
+        }else if (this.f_index === 9 &&  this.s_index === 2 && score === 10) {// 10F STRIKE2
+            console.log("10F STRIKE2");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextPlayer();
+            (prev_score === 0) ? rt_val = "spare" : rt_val = "strike";
+
+
+        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index > 0 && prev_score !== 10) {// 10F SPARE
             console.log("10F SPARE");
             this.setFrameScore("none", score);
             this.setScore(score);
@@ -312,9 +328,6 @@ export class ScoreStore {
         } else if (this.s_index === 1 && this.f_index < 9) { // 두번째 쳤을 경우
             console.log("1~9F NONE 1");
             this.setFrameScore("none", score);
-            if(score === 0){
-                console.log("스코어 0인데 버그 잡히나요?");
-            }
             this.setScore(score);
             this.nextPlayer();
         }
