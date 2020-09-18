@@ -42,7 +42,6 @@ export class LaneBox extends React.Component<LaneProps, LaneState> {
         const players = playerStore.getPlayers();
         const player_name = players[p_index];
         const turn: boolean = this.turnCheck(p_index);
-        console.log("RENDER TURN : " + turn + " P_INDEX : " + p_index);
 
         return (
           <div>

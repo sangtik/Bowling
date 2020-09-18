@@ -81,7 +81,7 @@ export class FrameBox extends React.Component<FrameProps> {
         const frame_total = this.getFrameTotalScore(p_index, f_index);
         const blank = this.blankCheck(first_score, second_score, frame_total);
 
-        console.log("first_score, second_score, third_score : " + first_score + " " + second_score + " " + third_score);
+        // console.log("first_score, second_score, third_score : " + first_score + " " + second_score + " " + third_score);
 
         let status = (f_index < 9) ? this.getStatus(first_score, second_score) : this.getStatus10F(first_score, second_score, third_score);
 

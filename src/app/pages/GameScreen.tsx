@@ -12,6 +12,7 @@ interface ScreenProps {
 }
 interface ScreenState {
     modal: boolean;
+    status: string;
 }
 @inject('playerStore', 'scoreStore')
 @observer
@@ -19,11 +20,28 @@ export class GameScreen extends React.Component<ScreenProps, ScreenState> {
     static defaultProps: {};
     constructor(props) {
         super(props);
-        this.state = {modal:false};
+        this.state = {modal:false, status:"none"};
     }
 
-    handleOpenModal = () => {
-        this.setState({modal: true});
+    handleOpenModalCheck = (score_status) => {
+        switch (score_status) {
+            case "turkey":
+                this.setState({modal: true, status: "turkey"});
+                break;
+            case "double":
+                this.setState({modal: true, status: "double"});
+                break;
+            case "strike":
+                this.setState({modal: true, status: "strike"});
+                break;
+            case "spare":
+                this.setState({modal: true, status: "spare"});
+                break;
+            case "gutter":
+                this.setState({modal: true, status: "gutter"});
+                break;
+            default:
+        }
     }
 
     handleCloseModal = () => {
@@ -31,13 +49,11 @@ export class GameScreen extends React.Component<ScreenProps, ScreenState> {
     }
 
     all_hit = () => {
-        const all_hit: boolean = true;
-        scoreStore.hit(all_hit);
+        this.handleOpenModalCheck(scoreStore.hit(true));
     }
 
     hit = () => {
-        const all_hit: boolean = false;
-        scoreStore.hit(all_hit);
+        this.handleOpenModalCheck(scoreStore.hit(false));
     }
 
     render() {
@@ -58,9 +74,9 @@ export class GameScreen extends React.Component<ScreenProps, ScreenState> {
                     <div className={"scr_number"}>{headers}</div>
                     <div className={"scr_contents"}>{lanes}</div>
                     <div className={"scr_footer"}>
-                        <button className={"hit_btn"} onClick={() => {this.hit(); this.handleOpenModal();} }> 그냥 치기</button>
-                        <button className={"hit_btn"} onClick={() => {this.all_hit(); this.handleOpenModal();} }> 모두 처리</button>
-                        {this.state.modal && <ScoreModal onClose={this.handleCloseModal}/>}
+                        <button className={"hit_btn"} onClick={() => {this.hit(); } }> 그냥 치기</button>
+                        <button className={"hit_btn"} onClick={() => {this.all_hit(); } }> 모두 처리</button>
+                        {this.state.modal && <ScoreModal status={this.state.status} onClose={this.handleCloseModal}/>}
                     </div>
                 </div>
             </>

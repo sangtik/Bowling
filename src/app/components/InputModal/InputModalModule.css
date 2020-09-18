@@ -21,11 +21,20 @@
 .label{
     font-family:"HY강M";
     /*background: white;*/
-    padding: 1rem;
-    width: 30px;
-    height: 40px;
+    /*padding: 1rem;*/
+
+    width: 100px;
+    height: 30px;
 
 }
+
+.input_box{
+    font-family:"HY강M";
+    margin-left: 30px;
+    width: 100px;
+    height: 30px;
+}
+
 
 .close_button{
     background: #1b232a;

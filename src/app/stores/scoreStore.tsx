@@ -30,11 +30,12 @@ export class ScoreStore {
 
     }
 
-    @action private
+    @action
     setFrameScore = (status: string, score: number) => {
 
         if (this.f_index >= this.f_max) return false;
         // console.log(" setFrameScore Params : " + status + " score : " + score + " f_index " + this.f_index);
+
         switch (status) {
             case "strike" :
                 this.f_scores[this.p_index][this.f_index] = -1;
@@ -43,6 +44,11 @@ export class ScoreStore {
                 this.f_scores[this.p_index][this.f_index] = -2;
                 break;
             case "none" :
+                // 버그 : 0 값 입력시 안더함 그래서 옵저버 발동 안함함
+              if(score === 0){
+                  this.f_scores[this.p_index][this.f_index] ++;
+                  this.f_scores[this.p_index][this.f_index] --;
+              }
                 this.f_scores[this.p_index][this.f_index] += score;
                 break;
             default :
@@ -155,81 +161,13 @@ export class ScoreStore {
         const prevFrameScore = this.prevFrameScoreCheck(point);
         this.setPrevFrameScore(prev_score, prevFrameScore, score);
 
-        // 현재 프레임 점수
-        // 10 Frame
-        if (this.f_index === 9 && (this.s_index === 0 || this.s_index === 1) && score === 10) {// 10F STRIKE
-            console.log("10F STRIKE");
-            this.setFrameScore("none", score);
-            this.setScore(score);
-            this.nextScore();
+        // 현재 프레임 점수 갱신
+        const thisFrameScore = this.thisFrameScoreCheck(prev_score, prevFrameScore, score);
 
-        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index === 1 && prev_score !== 10) {// 10F SPARE
-            console.log("10F SPARE");
-            this.setFrameScore("none", score);
-            this.setScore(score);
-            this.nextScore();
+        // this.printAllScore();
+        this.printAllFrameScore();
 
-        } else if (this.f_index === 9 && this.s_index === 0) {// 10F NONE
-            console.log("10F NONE 1");
-            this.setFrameScore("none", score);
-            this.setScore(score);
-            this.nextScore();
-
-        } else if (this.f_index === 9 && this.s_index === 1 && prev_score === 10) {// 10F NONE
-            console.log("10F NONE 2");
-            this.setFrameScore("none", score);
-            this.setScore(score);
-            this.nextScore();
-
-        } else if (this.f_index === 9 && (this.s_index === 1 || this.s_index === 2)) {// 10F NONE
-            console.log("10F NONE 3");
-            this.setFrameScore("none", score);
-            this.setScore(score);
-            this.nextPlayer();
-
-            // 1~9 Frame
-        } else if (score === 10 && this.s_index === 0) { // STRIKE
-            console.log("10F NONE STRIKE");
-            this.setFrameScore("strike", score);
-            this.setScore(score);
-            this.nextPlayer();
-
-        } else if ((prev_score + score) === 10 && this.s_index === 1) { // SPARE
-            console.log("1~9F NONE SPARE");
-            this.setFrameScore("spare", score);
-            this.setScore(score);
-            this.nextPlayer();
-
-        } else if (this.s_index === 0) { // 한번 쳤을 경우 (score index 변경)
-            console.log("1~9F NONE 0");
-            this.setFrameScore("none", score);
-            this.setScore(score);
-            this.nextScore();
-
-        } else if (this.s_index === 1 && this.f_index < 9) { // 두번째 쳤을 경우
-            console.log("1~9F NONE 1");
-            this.setFrameScore("none", score);
-            console.log("p_index0 : " + this.p_index);
-            this.setScore(score);
-            this.nextPlayer();
-            console.log("p_index1 : " + this.p_index);
-        }
-
-        // 전체 스코어 확인
-        // for (let i = 0; i < this.scores.length; i++) {
-        //   for (let j = 0; j < this.scores[i].length; j++) {
-        //     if (this.scores[i][j] !== null)
-        //       console.log("[player] : " + i + " [score_index] : " + j + " [score] : " + this.scores[i][j]);
-        //   }
-        // }
-
-        // 전체 스코어 프레임 확인
-        // for (let i = 0; i < this.f_scores.length; i++) {
-        //   for (let j = 0; j < this.f_scores[i].length; j++) {
-        //     if (this.f_scores[i][j] !== null)
-        //       console.log("[player] : " + i + " [f_scores_index] : " + j + " [f_scores] : " + this.f_scores[i][j]);
-        //   }
-        // }
+        return thisFrameScore;
     }
 
     getNextTurn() {
@@ -311,6 +249,100 @@ export class ScoreStore {
             return total;
         }
         return f_score;
+    }
+
+    private thisFrameScoreCheck(prev_score: number, prevFrameScore: string, score: number) {
+
+        let rt_val:string = "none";
+
+        // 10 Frame
+        if (this.f_index === 9 && (this.s_index === 0 || this.s_index === 1) && score === 10) {// 10F STRIKE
+            console.log("10F STRIKE");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextScore();
+            rt_val = "strike";
+
+        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index === 1 && prev_score !== 10) {// 10F SPARE
+            console.log("10F SPARE");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextScore();
+            rt_val = "spare";
+
+        } else if (this.f_index === 9 && this.s_index === 0) {// 10F NONE
+            console.log("10F NONE 1");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextScore();
+
+        } else if (this.f_index === 9 && this.s_index === 1 && prev_score === 10) {// 10F NONE
+            console.log("10F NONE 2");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextScore();
+
+        } else if (this.f_index === 9 && (this.s_index === 1 || this.s_index === 2)) {// 10F NONE
+            console.log("10F NONE 3");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextPlayer();
+
+            // 1~9 Frame
+        } else if (score === 10 && this.s_index === 0) { // STRIKE
+            console.log("10F NONE STRIKE");
+            this.setFrameScore("strike", score);
+            this.setScore(score);
+            this.nextPlayer();
+            rt_val = "strike";
+
+        } else if ((prev_score + score) === 10 && this.s_index === 1) { // SPARE
+            console.log("1~9F NONE SPARE");
+            this.setFrameScore("spare", score);
+            this.setScore(score);
+            this.nextPlayer();
+            rt_val = "spare";
+
+        } else if (this.s_index === 0) { // 한번 쳤을 경우 (score index 변경)
+            console.log("1~9F NONE 0");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextScore();
+
+        } else if (this.s_index === 1 && this.f_index < 9) { // 두번째 쳤을 경우
+            console.log("1~9F NONE 1");
+            this.setFrameScore("none", score);
+            if(score === 0){
+                console.log("스코어 0인데 버그 잡히나요?");
+            }
+            this.setScore(score);
+            this.nextPlayer();
+        }
+
+        if(prevFrameScore === "double" && rt_val === "strike") rt_val = "turkey";
+        else if(prevFrameScore === "strike" && rt_val === "strike") rt_val = "double";
+
+        return rt_val;
+    }
+
+    private printAllScore() {
+        // 전체 스코어 확인
+        for (let i = 0; i < this.scores.length; i++) {
+          for (let j = 0; j < this.scores[i].length; j++) {
+            if (this.scores[i][j] !== null)
+              console.log("[player] : " + i + " [score_index] : " + j + " [score] : " + this.scores[i][j]);
+          }
+        }
+    }
+
+    private printAllFrameScore() {
+        // 전체 스코어 프레임 확인
+        for (let i = 0; i < this.f_scores.length; i++) {
+          for (let j = 0; j < this.f_scores[i].length; j++) {
+            if (this.f_scores[i][j] !== null)
+              console.log("[player] : " + i + " [f_scores_index] : " + j + " [f_scores] : " + this.f_scores[i][j]);
+          }
+        }
     }
 }
 
