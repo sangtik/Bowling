@@ -84,6 +84,7 @@
 
 .contents {
     width: 1050px;
+
     height: 150px;
     /*margin-left: 200px;*/
     /*background: #fff200;*/
@@ -98,9 +99,22 @@
     width: 100px;
     height: 85px;
     line-height: 90px;
-    margin-right: 300px;
+    margin-right: 50px;
     font-size: 30px;
     color: white;
     float: right;
     border: 1px solid #303c46;
+}
+
+.rank_box {
+    font-family:"HY강M";
+    display: inline-block;
+    width: 100px;
+    height: 85px;
+    line-height: 90px;
+    margin-right: 150px;
+    font-size: 30px;
+    color: white;
+    float: right;
+    /*border: 1px solid #303c46;*/
 }

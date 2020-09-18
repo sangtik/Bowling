@@ -24,7 +24,7 @@ export class PlayerStore {
 
     getPlayers = () => {
         for (let i = 0; i < this.players.length; i++) {
-            console.log("[index] : " + i + " [player name] : " + this.players[i]);
+            // console.log("[index] : " + i + " [player name] : " + this.players[i]);
         }
         return this.players;
     }

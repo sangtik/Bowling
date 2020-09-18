@@ -64,3 +64,12 @@
     border-color: #f5fff0;
     transition: all 0.7s ease-out;
 }
+
+.home_link {
+    font-family: "HY강M";
+    text-decoration: none;
+    font-weight: 500;
+    font-style: normal;
+    color: #c8cd3f;
+    border-color: #f5fff0;
+}

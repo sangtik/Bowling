@@ -10,6 +10,8 @@ export class ScoreStore {
     f_index: number = 0; // 프레임 차례 (0~9 : 10)
     s_index: number = 0; // 게임 차례 (0: 첫번째, 1: 두번째)
 
+    @observable game_set: boolean = false;
+
     @observable point: number = 0; // 데이터 현재 입력 차례
 
     @observable scores; // 스코어 전체 점수를 저장하는 리스트
@@ -103,10 +105,8 @@ export class ScoreStore {
     }
 
     @action hit = (all_hit) => {
-        if (this.f_index === this.f_max) {
-            console.log("Game End...!!!!");
-            return false;
-        }
+
+        if(this.game_set) return 0;
 
         let score: number;
         let point: number = (this.f_index * 2) + this.s_index;
@@ -165,7 +165,9 @@ export class ScoreStore {
         const thisFrameScore = this.thisFrameScoreCheck(prev_score, prevFrameScore, score);
 
         // this.printAllScore();
-        this.printAllFrameScore();
+        // this.printAllFrameScore();
+
+        if(this.f_index === this.f_max) this.game_set = true;
 
         return thisFrameScore;
     }
@@ -191,6 +193,24 @@ export class ScoreStore {
         }
         // console.log("p_index : " + p_index + " total : " + total);
         return total;
+    }
+
+    getRank(p_index: number): number {
+        let rank: number = 0;
+        console.log("game_set : " + this.game_set);
+
+        let totals = new Array(this.p_max); // 점수 담을 그릇 생성
+        for (let i = 0; i < this.p_max; i++) { // 총합 점수 담기
+            totals[i] = this.getTotal(i);
+            // console.log("getTotal : " + totals[i]);
+        }
+        for (let i = 0; i < totals.length; i++) { // 총합 비교
+            if (totals[p_index] < totals[i]) rank++;
+        }
+        // 인자로 들어온 인덱스 값과 일치하는 등수 확인
+        console.log("rank : [" + rank + "]");
+        if (!this.game_set) rank = -1; // 게임 끝났는지 확인
+        return rank;
     }
 
     private prevFrameScoreCheck(now_s_index: number): string {
@@ -276,11 +296,18 @@ export class ScoreStore {
             this.nextPlayer();
             (prev_score === 0) ? rt_val = "spare" : rt_val = "strike";
 
-        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index > 0 && prev_score !== 10) {// 10F SPARE
-            console.log("10F SPARE");
+        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index === 1 && prev_score !== 10) {// 10F SPARE1
+            console.log("10F SPARE1");
             this.setFrameScore("none", score);
             this.setScore(score);
             this.nextScore();
+            rt_val = "spare";
+
+        } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index === 2 && prev_score !== 10) {// 10F SPARE2
+            console.log("10F SPARE2");
+            this.setFrameScore("none", score);
+            this.setScore(score);
+            this.nextPlayer();
             rt_val = "spare";
 
         } else if (this.f_index === 9 && this.s_index === 0) {// 10F NONE
