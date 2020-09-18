@@ -252,7 +252,6 @@ export class ScoreStore {
     }
 
     private thisFrameScoreCheck(prev_score: number, prevFrameScore: string, score: number) {
-
         let rt_val:string = "none";
 
         // 10 Frame
@@ -270,14 +269,12 @@ export class ScoreStore {
             this.nextScore();
             (prev_score === 0) ? rt_val = "spare" : rt_val = "strike";
 
-
         }else if (this.f_index === 9 &&  this.s_index === 2 && score === 10) {// 10F STRIKE2
             console.log("10F STRIKE2");
             this.setFrameScore("none", score);
             this.setScore(score);
             this.nextPlayer();
             (prev_score === 0) ? rt_val = "spare" : rt_val = "strike";
-
 
         } else if (this.f_index === 9 && (prev_score + score) === 10 && this.s_index > 0 && prev_score !== 10) {// 10F SPARE
             console.log("10F SPARE");
