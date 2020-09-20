@@ -19,14 +19,12 @@ export interface AuthManagerProps {
 export class AuthManager extends React.Component<AuthManagerProps> {
 
   render() {
-    // const { playerStore, scoreStore } = this.props;
     console.log('AuthManager render');
     return (
 
       <div>
         <Switch>
-          {/*exact = exactly*/}
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={Home}/>{/*exact = exactly*/}
           <Route exact path="/setting" component={() => <GameSetting />}/>
           <Route exact path="/screen" component={() => <GameScreen />}/>
           <Route render={({location}) => (

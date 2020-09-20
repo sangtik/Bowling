@@ -185,19 +185,6 @@ export class ScoreStore {
         return thisFrameScore;
     }
 
-    getNextTurn() {
-        let next_p_index: number = 0;
-        if (this.f_index < 9) {
-            if (this.s_index === 1)
-                next_p_index = (this.p_index + 1) % this.p_max;
-        } else {
-            if (this.s_index === 2)
-                next_p_index = (this.p_index + 1) % this.p_max;
-        }
-        console.log("next : " + next_p_index);
-        return next_p_index;
-    }
-
     getTotal(p_index: number): number {
         let total = 0;
         for (let i = 0; i < this.f_scores[p_index].length; i++) {

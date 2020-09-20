@@ -5,7 +5,6 @@ import {LaneBox} from "../components/LaneBox";
 import {inject, observer} from "mobx-react";
 import "./GameScreen.module.css"
 import {FrameLabel} from "../components/FrameLabel";
-import {GameSetting} from "./GameSetting";
 import {ScoreModal} from "../components/ScoreModal";
 import {Link} from "react-router-dom";
 
